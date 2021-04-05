@@ -1,0 +1,5 @@
+rootProject.name = 'tinkerbox'
+include 'nginx'
+include 'gitlab'
+include 'jenkins'
+

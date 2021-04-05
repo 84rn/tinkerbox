@@ -1,0 +1,23 @@
+version: '3'
+
+volumes:
+  jenkins-data:
+  jenkins-log:
+
+
+networks:
+  reverse-proxy_default:
+    external: true
+
+services:
+  jenkins:
+    build: images/jenkins
+    volumes:
+      - jenkins-log:/var/log/jenkins
+      - jenkins-data:/var/jenkins_home
+
+  nginx-jenkins:
+    build: images/nginx
+    networks:
+      default:
+      reverse-proxy_default:

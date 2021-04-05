@@ -1,0 +1,24 @@
+version: '3'
+
+volumes:
+  gitlab-logs:
+  gitlab-data:
+  gitlab-config:
+
+networks:
+  reverse-proxy_default:
+    external: true
+
+services:
+  gitlab:
+    build: images/gitlab
+    volumes:
+      - gitlab-logs:/var/log/gitlab
+      - gitlab-data:/var/opt/gitlab
+      - gitlab-config:/etc/gitlab
+
+  nginx-gitlab:
+    build: images/nginx
+    networks:
+      default:
+      reverse-proxy_default:
