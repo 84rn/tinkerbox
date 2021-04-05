@@ -17,6 +17,7 @@ services:
       - jenkins-data:/var/jenkins_home
     ports:
       - "50000:50000"
+    restart: always
 
   nginx-jenkins:
     build: images/nginx

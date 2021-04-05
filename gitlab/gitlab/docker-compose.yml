@@ -23,6 +23,7 @@ services:
       - gitlab-logs:/var/log/gitlab
       - gitlab-data:/var/opt/gitlab
       - gitlab-config:/etc/gitlab
+    restart: always
 
   nginx-gitlab:
     build: images/nginx
