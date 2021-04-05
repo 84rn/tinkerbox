@@ -12,6 +12,13 @@ networks:
 services:
   gitlab:
     build: images/gitlab
+    hostname: 'gitlab.tinkerbox'
+    environment:
+        GITLAB_OMNIBUS_CONFIG: |
+          external_url 'http://gitlab.tinkerbox'
+          gitlab_rails['gitlab_shell_ssh_port'] = 2222
+    ports:
+      - "2222:22"
     volumes:
       - gitlab-logs:/var/log/gitlab
       - gitlab-data:/var/opt/gitlab
