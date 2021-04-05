@@ -15,6 +15,8 @@ services:
     volumes:
       - jenkins-log:/var/log/jenkins
       - jenkins-data:/var/jenkins_home
+    ports:
+      - "50000:50000"
 
   nginx-jenkins:
     build: images/nginx
