@@ -1,8 +1,0 @@
-version: '3'
-
-services:
-  nginx-proxy:
-    build: images/nginx
-    ports:
-      - "80:80"
-    restart: always

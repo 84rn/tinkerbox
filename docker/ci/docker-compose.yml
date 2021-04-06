@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  nginx-proxy:
+    build: ${DOCKERFILES}/nginx
+    ports:
+      - "80:80"
+    restart: always
+
+  gitlab:
+    build: ${DOCKERFILES}/gitlab
+    hostname: "gitlab.${HOSTNAME}"
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url "http://gitlab.${hostname}"
+        gitlab_rails['gitlab_shell_ssh_port'] = ${GITLAB_SSH_PORT}
+    ports:
+      - "${GITLAB_SSH_PORT}:22"
+    volumes:
+      - gitlab-logs:/var/log/gitlab
+      - gitlab-data:/var/opt/gitlab
+      - gitlab-config:/etc/gitlab
+    restart: always
+
+  jenkins:
+    build: ${DOCKERFILES}/jenkins
+    hostname: "jenkins.${HOSTNAME}"
+    volumes:
+      - jenkins-log:/var/log/jenkins
+      - jenkins-data:/var/jenkins_home
+    ports:
+      # slave port
+      - "50000:50000"
+    restart: always
+
+volumes:
+  # Gitlab
+  gitlab-logs:
+  gitlab-data:
+  gitlab-config:
+  # Jenkins
+  jenkins-data:
+  jenkins-log:

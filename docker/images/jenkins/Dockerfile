@@ -1,4 +1,5 @@
-FROM jenkins/jenkins:2.277.1-lts
+ARG TAG=2.277.1-lts
+FROM jenkins/jenkins:$TAG
 EXPOSE 8080
 EXPOSE 50000
 USER root
