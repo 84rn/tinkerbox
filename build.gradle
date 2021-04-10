@@ -4,11 +4,6 @@ plugins {
 }
 
 group 'tinkerbox'
-    id 'groovy'
-    id 'java'
-}
-
-group 'tinkerbox.ci'
 version '1.0-SNAPSHOT'
 
 repositories {
